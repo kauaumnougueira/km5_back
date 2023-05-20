@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ClienteServicoController;
 use App\Models\ClienteServico;
 
 /*
@@ -26,3 +27,8 @@ Route::post('/createcliente', [ClientesController::class , 'createCliente'])->na
 Route::post('/updatecliente/{id}', [ClientesController::class, 'updateCliente'])->name('update-cliente');
 
 Route::post('/createclienteservico', [ClienteServicoController::class, 'createClienteServico'])->name('create-clienteservico');
+Route::get('/getservicoporcliente/{id}', [ClienteServicoController::class, 'getAllServicosPorCliente']);
+Route::get('/getclienteporservico/{id}', [ClienteServicoController::class, 'getAllClientesPorServico']);
+
+Route::get('/getservicos', [ClientesController::class, 'allServicos'])->name('get-servicos');
+Route::get('/getservico/{id}', [ClientesController::class, 'getServicobyId'])->name('get-servico');
