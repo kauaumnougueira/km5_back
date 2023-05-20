@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Clientes;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
-    public function consulta(){
+    public function consultaCliente(){
         return Clientes::all();
     }
 
     //api de clientes
     public function allClientes(){
-        $clientes = ClientesController::consulta();
+        ClientesController::resetId();
+        $clientes = ClientesController::consultaCliente();
         return response()->json($clientes);
     }
 
     public function getClienteById($id){
+        ClientesController::resetId();
         return Clientes::findOrFail($id);
     }
 
@@ -43,13 +46,34 @@ class ClientesController extends Controller
         $telefone = $request->input('telefone');
         $endereco = $request->input('endereco');
 
-        $clienteUp = [
-            'nome' => $nome,
-            'telefone' => $telefone,
-            'endereco' => $endereco
-        ];
+        $clienteUp = [];
+
+        $nome = $request->input('nome');
+        if ($nome !== null) {
+            $clienteUp['nome'] = $nome;
+        }
+
+        $telefone = $request->input('telefone');
+        if ($telefone !== null) {
+            $clienteUp['telefone'] = $telefone;
+        }
+
+        $endereco = $request->input('endereco');
+        if ($endereco !== null) {
+            $clienteUp['endereco'] = $endereco;
+        }
 
         $cliente->update($clienteUp);
-        return response()->json(['message' => 'cliente cadastrado']);
+        $cliente->save();
+        return response()->json(['message' => 'cliente atualizado', 'atual' => $clienteUp, 'nome' => $nome]);
+    }
+
+    public function getClientesBy($e){
+        return Clientes::where($e);
+    }
+
+    public function resetId(){
+        DB::statement('ALTER TABLE clientes DROP COLUMN id;');
+        DB::statement('ALTER TABLE clientes ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST;');
     }
 }
