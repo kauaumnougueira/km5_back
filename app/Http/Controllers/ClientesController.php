@@ -28,11 +28,13 @@ class ClientesController extends Controller
         $nome = $request->input('nome');
         $telefone = $request->input('telefone');
         $endereco = $request->input('endereco');
+        $desde = $request->input('desde');
 
         $cliente = [
             'nome' => $nome,
             'telefone' => $telefone,
-            'endereco' => $endereco
+            'endereco' => $endereco,
+            'desde' => $desde
         ];
 
         Clientes::insert($cliente);
@@ -41,10 +43,6 @@ class ClientesController extends Controller
 
     public function updateCliente(Request $request, $id){
         $cliente = ClientesController::getClienteById($id);
-
-        $nome = $request->input('nome');
-        $telefone = $request->input('telefone');
-        $endereco = $request->input('endereco');
 
         $clienteUp = [];
 
@@ -63,13 +61,18 @@ class ClientesController extends Controller
             $clienteUp['endereco'] = $endereco;
         }
 
+        $desde = $request->input('desde');
+        if($desde !== null){
+            $clienteUp['desde'] = $desde;
+        }
+
         $cliente->update($clienteUp);
         $cliente->save();
-        return response()->json(['message' => 'cliente atualizado', 'atual' => $clienteUp, 'nome' => $nome]);
+        return response()->json(['message' => 'cliente atualizado']);
     }
 
-    public function getClientesBy($e){
-        return Clientes::where($e);
+    public function getClientesBy($coluna, $e){
+        return Clientes::where($coluna, $e)->get();
     }
 
     public function resetId(){

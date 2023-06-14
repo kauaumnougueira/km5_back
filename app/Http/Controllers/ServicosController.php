@@ -24,7 +24,7 @@ class ServicosController extends Controller
         return Servicos::findOrFail($id);
     }
 
-    public function getServicosBy($e){
-        return Servicos::where($e);
+    public function getServicosBy($coluna, $e){
+        return Servicos::where($coluna, $e)->get();
     }
 }

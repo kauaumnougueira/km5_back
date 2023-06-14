@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ServicosController;
 use App\Http\Controllers\ClienteServicoController;
-use App\Models\ClienteServico;
+use App\Http\Controllers\TipoServicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,10 @@ Route::post('/updatecliente/{id}', [ClientesController::class, 'updateCliente'])
 Route::post('/createclienteservico', [ClienteServicoController::class, 'createClienteServico'])->name('create-clienteservico');
 Route::get('/getservicoporcliente/{id}', [ClienteServicoController::class, 'getAllServicosPorCliente']);
 Route::get('/getclienteporservico/{id}', [ClienteServicoController::class, 'getAllClientesPorServico']);
+Route::get('/getclienteservico/{id}', [ClienteServicoController::class, 'getAllClienteServico']);
 
-Route::get('/getservicos', [ClientesController::class, 'allServicos'])->name('get-servicos');
-Route::get('/getservico/{id}', [ClientesController::class, 'getServicobyId'])->name('get-servico');
+Route::get('/getservicos', [ServicosController::class, 'allServicos'])->name('get-servicos');
+Route::get('/getservico/{id}', [ServicosController::class, 'getServicoById'])->name('get-servico');
+
+Route::get('/gettiposervicos', [TipoServicoController::class, 'getAllTipoServicos'])->name('get-tiposervicos');
+Route::get('/gettiposervico/{id}', [TipoServicoController::class, 'getTipoServicoByIdServico'])->name('get-tiposervicoid');

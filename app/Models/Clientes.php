@@ -14,6 +14,7 @@ class Clientes extends Model
         'id',
         'nome',
         'telefone',
-        'endereco'
+        'endereco',
+        'desde'
     ];
 }
