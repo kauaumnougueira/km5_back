@@ -27,7 +27,7 @@ Route::get('/getcliente/{id}', [ClientesController::class, 'getClientebyId'])->n
 Route::post('/createcliente', [ClientesController::class , 'createCliente'])->name('create-cliente');
 Route::post('/updatecliente/{id}', [ClientesController::class, 'updateCliente'])->name('update-cliente');
 
-Route::post('/createclienteservico', [ClienteServicoController::class, 'createClienteServico'])->name('create-clienteservico');
+Route::post('/createclienteservico/{idc}/{ids}', [ClienteServicoController::class, 'createClienteServico'])->name('create-clienteservico');
 Route::get('/getservicoporcliente/{id}', [ClienteServicoController::class, 'getAllServicosPorCliente']);
 Route::get('/getclienteporservico/{id}', [ClienteServicoController::class, 'getAllClientesPorServico']);
 Route::get('/getclienteservico/{id}', [ClienteServicoController::class, 'getAllClienteServico']);

@@ -12,7 +12,6 @@ class ClientesController extends Controller
         return Clientes::all();
     }
 
-    //api de clientes
     public function allClientes(){
         ClientesController::resetId();
         $clientes = ClientesController::consultaCliente();
