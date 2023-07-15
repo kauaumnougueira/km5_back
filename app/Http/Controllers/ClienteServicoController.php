@@ -22,11 +22,13 @@ class ClienteServicoController extends Controller
         return $clientes->getClienteBy('id', $id_servico);
     }
 
-    public function createClienteServico($id_cliente, $id_servico){
+    public function createClienteServico($data_clienteservico){
+
         $cliente_servico = [
-            'id_cliente' => $id_cliente,
-            'id_servico' => $id_servico,
-            'data_contratacao' => 0000
+            'id_cliente' => $data_clienteservico['id_cliente'],
+            'id_relatorio' => $data_clienteservico['id_servico'],
+            'id_nome' => $data_clienteservico['nome'],
+            'preco' => $data_clienteservico['preco']
         ];
 
         ClienteServico::insert($cliente_servico);

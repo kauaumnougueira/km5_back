@@ -36,4 +36,4 @@ Route::get('/getservicos', [ServicosController::class, 'allServicos'])->name('ge
 Route::get('/getservico/{id}', [ServicosController::class, 'getServicoById'])->name('get-servico');
 
 Route::get('/gettiposervicos', [TipoServicoController::class, 'getAllTipoServicos'])->name('get-tiposervicos');
-Route::get('/gettiposervico/{id}', [TipoServicoController::class, 'getTipoServicoByIdServico'])->name('get-tiposervicoid');
+Route::get('/gettiposervicos/{id}', [TipoServicoController::class, 'getTipoServicosByIdServico'])->name('get-tiposervicosid');

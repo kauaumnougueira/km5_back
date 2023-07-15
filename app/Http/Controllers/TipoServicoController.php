@@ -11,7 +11,7 @@ class TipoServicoController extends Controller
         return TipoServico::all();
     }
 
-    public function getTipoServicoByIdServico($id){
+    public function getTipoServicosByIdServico($id){
         return TipoServico::where('id_servico', $id)->get();
     }
 }

@@ -37,7 +37,7 @@ class ClientesController extends Controller
         ];
 
         Clientes::insert($cliente);
-        return response()->json(['message' => 'cliente cadastrado']);
+        return response()->json(['message' => 'cliente cadastrado', 'id_cliente' =>  Clientes::count()]);
     }
 
     public function updateCliente(Request $request, $id){
