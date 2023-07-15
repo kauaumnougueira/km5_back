@@ -37,3 +37,7 @@ Route::get('/getservico/{id}', [ServicosController::class, 'getServicoById'])->n
 
 Route::get('/gettiposervicos', [TipoServicoController::class, 'getAllTipoServicos'])->name('get-tiposervicos');
 Route::get('/gettiposervicos/{id}', [TipoServicoController::class, 'getTipoServicosByIdServico'])->name('get-tiposervicosid');
+
+Route::get('/getrelatorios', [RelatorioConroller::class, 'getAllRelatorios'])->name('get-relatorios');
+Route::get('/getrelatorio/{id}', [RelatorioController::class, 'getRelatorioById'])->name('get-reltorio');
+Route::get('/createrelatorio{data}', [RelatorioController::class, 'createRelatorio'])->name('create-relatorio');
